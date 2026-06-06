@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flipkart Clone</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <!-- <link rel="stylesheet" href="css/search.css"> -->
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* .logo img {
+    height: 41px;
+    width: auto;
+    cursor: pointer;
+    font-size: large;
+} */
+    </style>
+</head>
+
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+
+        <nav class="navbar">
+
+            <!-- LOGO -->
+            <div class="logo">
+                <h2>
+                    Flipkart
+                    <a href="index.html">
+                        <img src="Images/image copy 2.png" alt="Flipkart Logo">
+                    </a>
+                </h2>
+            </div>
+
+          
+
+            <form action="search.html" method="GET" class="search-box">
+
+                <input type="text" name="q" id="searchInput" placeholder="Search for Products, Brands and More"
+                    required>
+
+                <button  title="search" type="submit">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+
+            </form>
+
+            <!-- NAV LINKS -->
+            <div class="nav-links">
+
+                <!-- USER AREA (LOGIN / PROFILE SWITCH) -->
+                <div id="userArea">
+
+                    <!-- LOGIN -->
+                    <a href="login.html" id="loginLink">
+                        <i class="fa-regular fa-user"></i>
+                        Login
+                    </a>
+
+                    <!-- PROFILE (hidden by default) -->
+                    <div id="profileBox" class="profile hidden">
+
+                        <img src="https://i.pravatar.cc/40" class="profile-img" alt="" />
+
+                        <span id="userName"></span>
+
+                        <!-- DROPDOWN -->
+                        <div class="dropdown">
+                           <a href="profile.html">My Profile</a>
+                            <a href="#">Settings</a>
+                            <a href="#" onclick="logout()">Logout</a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <a href="#">
+                    <i class="fa-solid fa-store"></i>
+                    Become a Seller
+                </a>
+
+                <a href="cart.html">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    Cart
+                </a>
+
+            </div>
+
+            <div class="menu-btn">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+
+        </nav>
+
+    </header>
+
+    <!-- CATEGORY SECTION -->
+
+    <section class="categories">
+
+        <div class="category">
+            <i class="fa-solid fa-shirt"></i>
+            <P><a href="fashion.html" onclick="setCategory()">
+                    Fashion
+                </a></P>
+        </div>
+
+        <div class="category">
+            <i class="fa-solid fa-mobile-screen"></i>
+            <p>
+                <a href="mobile.html" onclick="setCategory( )">
+                    Mobile
+                </a>
+            </p>
+        </div>
+
+        <div class="category">
+            <i class="fa-solid fa-laptop"></i>
+            <p>
+                <a href="elect.html" onclick="setCategory( )">
+                    Electronics
+                </a>
+            </p>
+        </div>
+
+        <div class="category">
+            <i class="fa-solid fa-couch"></i>
+            <p>
+                <a href="furnit.html" onclick="setCategory()">
+                    Furnitures
+                </a>
+            </p>
+        </div>
+
+        <div class="category">
+            <i class="fa-solid fa-spa"></i>
+            <p>
+                <a href="beauty.html" onclick="setCategory()">
+                    Beauty
+                </a>
+            </p>
+        </div>
+
+        <div class="category">
+            <i class="fa-solid fa-bicycle"></i>
+            <p>
+                <a href="sports.html" onclick="setCategory()">
+                    Sports
+                </a>
+            </p>
+        </div>
+
+        <div class="category">
+            <i class="fa-solid fa-store"></i>
+            <p>
+                <a href="Grocery.html" onclick="setCategory()">
+                    Grocery
+                </a>
+            </p>
+        </div>
+
+        <div class="category">
+            <i class="fa-solid fa-baby"></i>
+            <p>
+                <a href="toyes.html" onclick="setCategory()">
+                    Toys
+                </a>
+            </p>
+        </div>
+
+    </section>
+
+    <!-- HERO BANNER -->
+
+    <section class="hero">
+
+        <div class="slider">
+
+            <div class="slide active">
+                <img src="images/cover1.jpg" alt="">
+            </div>
+
+            <div class="slide">
+                <img src="images/cover1.jpg" alt="">
+            </div>
+
+            <div class="slide">
+                <img src="images/cover2.jpg" alt="">
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- FEATURED BANNERS -->
+
+    <section class="featured">
+
+        <div class="banner">
+            <img src="images/box1.jpg" alt="">
+        </div>
+
+        <div class="banner">
+            <img src="images/box2.jpg" alt="">
+        </div>
+
+        <div class="banner">
+            <img src="images/box3.jpg" alt="">
+        </div>
+
+    </section>
+
+    <!-- TOP DEALS -->
+
+    <section class="products-section">
+
+        <div class="section-header">
+            <h2>Top Deals</h2>
+            <button>View All</button>
+        </div>
+
+        <div class="products-grid">
+
+            <div class="product-card">
+                <img src="images/watch.jpg" alt="">
+                <h4>Smart Watch</h4>
+                <p>Up to 70% Off</p>
+            </div>
+
+            <div class="product-card">
+                <img src="images/headphone.png" alt="">
+                <h4>Headphones</h4>
+                <p>Best Selling</p>
+            </div>
+
+            <div class="product-card">
+                <img src="images/mobile.png" alt="">
+                <h4>Mobile Phones</h4>
+                <p>Top Offers</p>
+            </div>
+
+            <div class="product-card">
+                <img src="images/laptop.png" alt="">
+                <h4>Laptops</h4>
+                <p>Special Price</p>
+            </div>
+
+            <div class="product-card">
+                <img src="images/shoes.jpg" alt="">
+                <h4>Shoes</h4>
+                <p>Min 60% Off</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ELECTRONICS -->
+
+    <section class="products-section">
+
+        <div class="section-header">
+            <h2>Best of Electronics</h2>
+            <button>View All</button>
+        </div>
+
+        <div class="products-grid">
+
+            <div class="product-card">
+                <img src="images/camera.png" alt="">
+                <h4>Camera</h4>
+                <p>Starting ₹4999</p>
+            </div>
+
+            <div class="product-card">
+                <img src="images/printer.png" alt="">
+                <h4>Printer</h4>
+                <p>Top Rated</p>
+            </div>
+
+            <div class="product-card">
+                <img src="images/monitor.png" alt="">
+                <h4>Monitor</h4>
+                <p>Great Deals</p>
+            </div>
+
+            <div class="product-card">
+                <img src="images/speaker.png" alt="">
+                <h4>Speaker</h4>
+                <p>Premium Quality</p>
+            </div>
+
+            <div class="product-card">
+                <img src="images/gamming.png" alt="">
+                <h4>Gaming</h4>
+                <p>Up to 50% Off</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- BIG BANNER -->
+
+    <section class="big-banner">
+        <img src="images/cover2.jpg" alt="">
+    </section>
+
+    <!-- MORE OFFERS -->
+
+    <section class="featured">
+
+        <div class="banner">
+            <img src="images/box7.jpg" alt="">
+        </div>
+
+        <div class="banner">
+            <img src="images/box8.jpg" alt="">
+        </div>
+
+        <div class="banner">
+            <img src="images/box9.jpg" alt="">
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="footer-container">
+
+            <div class="footer-column">
+                <h3>About</h3>
+                <a href="contact.html">Contact Us</a>
+                <a href="#">About Us</a>
+                <a href="#">Careers</a>
+                <a href="#">Corporate</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>Help</h3>
+                <a href="#">Payments</a>
+                <a href="#">Shipping</a>
+                <a href="#">Cancellation</a>
+                <a href="#">FAQ</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>Policy</h3>
+                <a href="#">Return Policy</a>
+                <a href="#">Terms Of Use</a>
+                <a href="#">Security</a>
+                <a href="#">Privacy</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>Social</h3>
+                <a href="https://www.facebook.com/flipkart?utm_source=chatgpt.com">Facebook</a>
+                <a href="https://www.instagram.com/flipkart?utm_source=chatgpt.com">Instagram</a>
+                <a href="https://x.com/flipkart?utm_source=chatgpt.com">Twitter</a>
+                <a href="https://www.youtube.com/user/flipkart?utm_source=chatgpt.com">YouTube</a>
+            </div>
+
+        </div>
+
+        <div class="copyright">
+            © 2026 Flipkart Clone. All Rights Reserved.
+        </div>
+
+    </footer>
+    <div id="products"></div>
+
+    <script src="js/script.js"></script>
+  <script src="js/search.js"></script>
+
+ <script src="js/auth.js"></script>
+    <script src="js/register.js"></script>
+    <script src="js/login.js"></script>
+    <!-- <script src="js/navbar.js"></script> -->
+
+    <script src="js/produect.js"></script>
+    <script src="js/payment.js"></script>
+    <script src="js/cart.js"></script>
+   
+
+ 
+<script type="module" src="js/navbar.js"></script> 
+<script type="module" src="js/firebase.js"></script>
+<!-- <script type="module" src="js/auth.js"></script>
+<script type="module" src="js/register.js"></script>
+<script type="module" src="js/login.js"></script> -->
+ 
+<!-- <script type="module" src="js/auth.js"></script>
+<script type="module" src="js/login.js"></script>
+<script type="module" src="js/register.js"></script>
+  <script type="module" src="js/produect.js"></script> -->
+<!-- <script type="module" src="js/cart.js"></script>
+<script type="module" src="js/search.js"></script>
+
+
+
+<script type="module" src="js/navbar.js"></script> -->
+
+
+</body>
+
+</html>

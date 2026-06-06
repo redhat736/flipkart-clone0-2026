@@ -1,0 +1,52 @@
+ 
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f1f3f6;
+        }
+
+/* ======================
+   LOGIN / CART CONTAINER
+====================== */
+
+.container{
+    width: 100%;
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.imgcart{
+    height: 220px;
+    width: 220px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* BUTTONS */
+.login__btn>button,
+.request__otp>button {
+    padding: 14px 20px;
+    font-size: 15px;
+    color: white;
+    font-weight: 500;
+    border: none;
+    border-radius: 6px;
+    background-color: #fb641b;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.login__btn>button:hover,
+.request__otp>button:hover{
+    background-color: #e85a15;
+    transform: translateY(-2px);
+}
+ 

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion</title>
+    <link rel="stylesheet" href="css/style.css  ">
+    <link rel="stylesheet" href="css/product.css  ">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+
+</head>
+
+
+<body>
+<header>
+
+  <nav class="navbar">
+
+    <!-- LOGO -->
+    <div class="logo">
+      <h2>
+        Flipkart
+        <a href="index.html">
+          <img src="Images/image copy 2.png" alt="Flipkart Logo">
+        </a>
+      </h2>
+    </div>
+
+    <!-- SEARCH -->
+    <form action="search.html" method="GET" class="search-box">
+
+                <input type="text" name="q" id="searchInput" placeholder="Search for Products, Brands and More"
+                    required>
+
+                <button  title="search" type="submit">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+
+            </form>
+
+    <!-- NAV LINKS -->
+    <div class="nav-links">
+
+      <!-- USER AREA (LOGIN / PROFILE SWITCH) -->
+      <div id="userArea">
+
+        <!-- LOGIN -->
+        <a href="login.html" id="loginLink">
+          <i class="fa-regular fa-user"></i>
+          Login
+        </a>
+
+        <!-- PROFILE (hidden by default) -->
+        <div id="profileBox" class="profile hidden">
+
+          <img src="https://i.pravatar.cc/40" class="profile-img" alt="" />
+
+          <span id="userName"></span>
+
+          <!-- DROPDOWN -->
+          <div class="dropdown">
+           <a href="profile.html">My Profile</a>
+            <a href="#">Settings</a>
+            <a href="#" onclick="logout()">Logout</a>
+          </div>
+
+        </div>
+
+      </div>
+
+      <a href="#">
+        <i class="fa-solid fa-store"></i>
+        Become a Seller
+      </a>
+
+      <a href="cart.html">
+        <i class="fa-solid fa-cart-shopping"></i>
+        Cart
+      </a>
+
+    </div>
+
+    <div class="menu-btn">
+      <i class="fa-solid fa-bars"></i>
+    </div>
+
+  </nav>
+
+</header>
+
+
+    <section class="categories">
+
+        <div class="category">
+            <i class="fa-solid fa-shirt"></i>
+            <P><a href="fashion.html" onclick="setCategory( )">
+                    Fashion
+                </a></P>
+        </div>
+
+        <div class="category">
+            <i class="fa-solid fa-mobile-screen"></i>
+            <p>
+                <a href="mobile.html" onclick="setCategory( )">
+                    Mobile
+                </a>
+            </p>
+        </div>
+
+         <div class="category">
+       <i class="fa-solid fa-laptop"></i>
+      <p>
+        <a href="elect.html" onclick="setCategory( )">
+          Electronics
+        </a>
+      </p>
+    </div>
+
+        <div class="category">
+            <i class="fa-solid fa-couch"></i>
+            <p>
+                <a href="furnit.html" onclick="setCategory()">
+                    Furnitures
+                </a>
+            </p>
+        </div>
+
+        <div class="category">
+           <i class="fa-solid fa-spa"></i>
+            <p>
+                <a href="beauty.html" onclick="setCategory( )">
+                    Beauty
+                </a>
+            </p>
+        </div>
+
+          <div class="category">
+           <i class="fa-solid fa-bicycle"></i>
+            <p>
+                <a href="sports.html" onclick="setCategory()">
+                    Sports
+                </a>
+            </p>
+        </div>
+
+         <div class="category">
+            <i class="fa-solid fa-store"></i>
+            <p>
+                <a href="Grocery.html" onclick="setCategory()">
+                    Grocery
+                </a>
+            </p>
+        </div>
+
+        <div class="category">
+           <i class="fa-solid fa-baby"></i>
+            <p>
+                <a href="toyes.html" onclick="setCategory()">
+                    Toys
+                </a>
+            </p>
+        </div>
+
+    </section>
+
+
+    <div id="products"></div>
+
+
+    <!-- FOOTER -->
+  <footer>
+
+        <div class="footer-container">
+
+            <div class="footer-column">
+                <h3>About</h3>
+                <a href="contact.html">Contact Us</a>
+                <a href="#">About Us</a>
+                <a href="#">Careers</a>
+                <a href="#">Corporate</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>Help</h3>
+                <a href="#">Payments</a>
+                <a href="#">Shipping</a>
+                <a href="#">Cancellation</a>
+                <a href="#">FAQ</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>Policy</h3>
+                <a href="#">Return Policy</a>
+                <a href="#">Terms Of Use</a>
+                <a href="#">Security</a>
+                <a href="#">Privacy</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>Social</h3>
+                <a href="https://www.facebook.com/flipkart?utm_source=chatgpt.com">Facebook</a>
+                <a href="https://www.instagram.com/flipkart?utm_source=chatgpt.com">Instagram</a>
+                <a href="https://x.com/flipkart?utm_source=chatgpt.com">Twitter</a>
+                <a href="https://www.youtube.com/user/flipkart?utm_source=chatgpt.com">YouTube</a>
+            </div>
+
+        </div>
+
+        <div class="copyright">
+            © 2026 Flipkart Clone. All Rights Reserved.
+        </div>
+
+    </footer>
+
+
+
+  
+
+  
+ 
+
+
+   <script>
+    window.onload = async function () {
+
+    let category = localStorage.getItem("selectedCategory");
+
+    if (category) {
+        getProducts(category);
+        return;
+    }
+
+    
+    const categories = [  "laptops", "smartphones"];
+
+    let allProducts = [];
+
+    for (let cat of categories) {
+        let res = await fetch(`https://dummyjson.com/products/category/${cat}`);
+        let data = await res.json();
+        allProducts = allProducts.concat(data.products);
+    }
+
+    displayProducts(allProducts); // show all together
+};
+   </script>
+
+      <script src="js/script.js"></script>
+  <script src="js/search.js"></script>
+
+   <script src="js/auth.js"></script>
+    <script src="js/register.js"></script>
+    <script src="js/login.js"></script>
+    <script src="js/navbar.js"></script>
+
+    <script src="js/produect.js"></script>
+    <script src="js/payment.js"></script>
+    <script src="js/cart.js"></script>
+ <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+      
+
+</body>
+
+</html>

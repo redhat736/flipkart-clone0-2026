@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Payment Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f1f3f6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .payment-box {
+            max-width: 600px;
+            margin: 50px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #2874f0;
+        }
+
+        .section {
+            background: #f8f8f8;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background: #2874f0;
+            color: white;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .btn:hover {
+            background: #0f5bd6;
+        }
+
+        .warning {
+            color: red;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="payment-box">
+
+        <h2>Payment Summary</h2>
+
+        <!-- ADDRESS -->
+        <div class="section" id="addressBox">
+            <h3>Delivery Address</h3>
+            <p>Loading...</p>
+        </div>
+
+        <!-- TOTAL -->
+        <div class="section">
+            <h3>Total Amount</h3>
+            <h2 id="totalAmount">₹0</h2>
+        </div>
+
+        <p class="warning" id="warning"></p>
+
+        <button class="btn" onclick="makePayment()">Pay Now</button>
+
+    </div>
+
+    <!-- Razorpay -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+    <!-- YOUR EXISTING PAYMENT JS -->
+    <script src="js/payment.js"></script>
+
+    <!-- UI SCRIPT ONLY (NO PAYMENT LOGIC HERE) -->
+    <script>
+        let address = JSON.parse(localStorage.getItem("address"));
+        let total = localStorage.getItem("cartTotal");
+
+        // show total
+        document.getElementById("totalAmount").innerText =
+            total ? "₹" + total : "₹0";
+
+        // show address
+        const box = document.getElementById("addressBox");
+
+        if (address) {
+            box.innerHTML = `
+                <h3>Delivery Address</h3>
+                <p>${address.address}</p>
+                <p>${address.city}, ${address.state}</p>
+                <p>${address.country} - ${address.pincode}</p>
+            `;
+        } else {
+            document.getElementById("warning").innerText =
+                "⚠ Please add delivery address first";
+        }
+    </script>
+<script src="js/payment.js"></script>
+</body>
+
+</html>

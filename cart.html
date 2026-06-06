@@ -1,0 +1,273 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flipcart clone</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/cart.css">
+
+
+<style>
+  .cart-item {
+    display: flex;
+    gap: 15px;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    align-items: center;
+}
+
+.cart-item img {
+    width: 80px;
+}
+
+.cart-total {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f9f5f5;
+    text-align: center;
+}
+
+.cart-total button {
+    padding: 10px 20px;
+    background: green;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+</style>
+    
+
+   
+</head>
+
+<body>
+
+<header>
+
+  <nav class="navbar">
+
+    <!-- LOGO -->
+    <div class="logo">
+      <h2>
+        Flipkart
+        <a href="index.html">
+          <img src="Images/image copy 2.png" alt="Flipkart Logo">
+        </a>
+      </h2>
+    </div>
+
+    <!-- SEARCH -->
+    <div class="search-box">
+      <input type="text" placeholder="Search for Products, Brands and More">
+      <button title="Search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+    </div>
+
+    <!-- NAV LINKS -->
+    <div class="nav-links">
+
+      <!-- USER AREA (LOGIN / PROFILE SWITCH) -->
+      <div id="userArea">
+
+        <!-- LOGIN -->
+        <a href="login.html" id="loginLink">
+          <i class="fa-regular fa-user"></i>
+          Login
+        </a>
+
+        <!-- PROFILE (hidden by default) -->
+        <div id="profileBox" class="profile hidden">
+
+          <img src="https://i.pravatar.cc/40" class="profile-img" alt="" />
+
+          <span id="userName"></span>
+
+          <!-- DROPDOWN -->
+          <div class="dropdown">
+           <a href="profile.html">My Profile</a>
+            <a href="#">Settings</a>
+            <a href="#" onclick="logout()">Logout</a>
+          </div>
+
+        </div>
+
+      </div>
+
+      <a href="#">
+        <i class="fa-solid fa-store"></i>
+        Become a Seller
+      </a>
+
+      <a href="cart.html">
+        <i class="fa-solid fa-cart-shopping"></i>
+        Cart
+      </a>
+
+    </div>
+
+    <div class="menu-btn">
+      <i class="fa-solid fa-bars"></i>
+    </div>
+
+  </nav>
+
+</header>
+
+
+    <div class="container">
+        <div class="imgcart"></div>
+        <h3>Missing Cart Items..?</h3>
+        <h6>login to see the items you added previous</h6>
+        <div class="login__btn">
+            <button type="button">Login</button>
+        </div>
+    </div>
+    
+   
+
+
+  <footer>
+
+        <div class="footer-container">
+
+            <div class="footer-column">
+                <h3>About</h3>
+                <a href="contact.html">Contact Us</a>
+                <a href="#">About Us</a>
+                <a href="#">Careers</a>
+                <a href="#">Corporate</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>Help</h3>
+                <a href="#">Payments</a>
+                <a href="#">Shipping</a>
+                <a href="#">Cancellation</a>
+                <a href="#">FAQ</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>Policy</h3>
+                <a href="#">Return Policy</a>
+                <a href="#">Terms Of Use</a>
+                <a href="#">Security</a>
+                <a href="#">Privacy</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>Social</h3>
+                <a href="https://www.facebook.com/flipkart?utm_source=chatgpt.com">Facebook</a>
+                <a href="https://www.instagram.com/flipkart?utm_source=chatgpt.com">Instagram</a>
+                <a href="https://x.com/flipkart?utm_source=chatgpt.com">Twitter</a>
+                <a href="https://www.youtube.com/user/flipkart?utm_source=chatgpt.com">YouTube</a>
+            </div>
+
+        </div>
+
+        <div class="copyright">
+            © 2026 Flipkart Clone. All Rights Reserved.
+        </div>
+
+    </footer>
+
+
+<script>
+const user = JSON.parse(localStorage.getItem("user"));
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+const container = document.querySelector(".container");
+
+function saveCart() {
+    localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+function renderCart() {
+
+    if (!user) {
+        container.innerHTML = `
+            <h3>Please login to view cart</h3>
+            <a href="login.html">Login</a>
+        `;
+        return;
+    }
+
+    let userCart = cart.filter(item => item.userId === user.uid);
+
+    if (userCart.length === 0) {
+        container.innerHTML = "<h3>Your cart is empty 🛒</h3>";
+        return;
+    }
+
+    let total = 0;
+
+    container.innerHTML = userCart.map((item, index) => {
+
+        total += item.price;
+
+        return `
+            <div class="cart-item">
+                <img src="${item.thumbnail}" />
+
+                <div>
+                    <h4>${item.title}</h4>
+                    <p>₹${item.price}</p>
+
+                    <button onclick="removeItem(${index})">
+                        Remove
+                    </button>
+                </div>
+            </div>
+        `;
+    }).join("");
+
+    container.innerHTML += `
+        <div class="cart-total">
+            <h2>Total: ₹${total}</h2>
+            <button onclick="checkout(${total})">Checkout</button>
+        </div>
+    `;
+}
+
+window.removeItem = function(index) {
+
+    let userCart = cart.filter(item => item.userId === user.uid);
+
+    let itemToRemove = userCart[index];
+
+    cart = cart.filter(item =>
+        !(item.userId === user.uid &&
+          item.thumbnail === itemToRemove.thumbnail &&
+          item.title === itemToRemove.title)
+    );
+
+    saveCart();
+    renderCart();
+};
+
+window.checkout = function(total) {
+
+    localStorage.setItem("cartTotal", total);
+
+    window.location.href = "address.html";
+};
+
+renderCart();
+</script>
+
+
+   <script src="js/script.js"></script>
+<script src="js/auth-guard.js"></script>
+       <script src="js/auth.js"></script>
+    <script src="js/register.js"></script>
+    <script src="js/login.js"></script>
+    <script src="js/navbar.js"></script>
+</body>
+</html>

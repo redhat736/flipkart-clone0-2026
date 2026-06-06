@@ -1,0 +1,162 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f1f3f6;
+    margin: 0;
+    min-height: 100vh;
+}
+
+/* 🔥 MAIN CENTER CONTAINER */
+.container {
+    width: 100%;
+    min-height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 15px;
+}
+
+/* 💳 LOGIN CARD */
+.login-box,
+.register-box {
+    display: flex;
+    max-width: 900px;
+    width: 100%;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    transition: 0.3s ease;
+}
+
+/* hover effect (real app feel) */
+.login-box:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+}
+
+/* 🔵 LEFT SIDE */
+.left {
+    flex: 1;
+    background: linear-gradient(135deg, #2874f0, #1a5edc);
+    color: white;
+    padding: 50px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.left h1 {
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+.left p {
+    font-size: 15px;
+    opacity: 0.9;
+    line-height: 1.5;
+}
+
+/* ⚪ RIGHT SIDE */
+.right {
+    flex: 1.2;
+    padding: 50px 40px;
+}
+
+.right h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* ✏️ INPUT STYLE */
+input {
+    width: 100%;
+    padding: 14px;
+    margin: 12px 0;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    outline: none;
+    transition: 0.2s;
+    font-size: 14px;
+}
+
+input:focus {
+    border-color: #2874f0;
+    box-shadow: 0 0 5px rgba(40, 116, 240, 0.3);
+}
+
+/* 🔘 BUTTONS */
+button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+/* login button */
+#loginBtn,
+#registerBtn {
+    background: #fb641b;
+    color: white;
+}
+
+#loginBtn:hover {
+    background: #e85a17;
+}
+
+/* google button */
+#googleLogin,
+#googleRegister {
+    background: #2874f0;
+    color: white;
+}
+
+#googleLogin:hover {
+    background: #1f66db;
+}
+
+/* links */
+a {
+    color: #2874f0;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* 📱 RESPONSIVE */
+@media (max-width: 768px) {
+
+    .login-box,
+    .register-box {
+        flex-direction: column;
+        border-radius: 10px;
+    }
+
+    .left {
+        text-align: center;
+        padding: 35px;
+    }
+
+    .right {
+        padding: 35px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .left,
+    .right {
+        padding: 25px;
+    }
+
+    .left h1 {
+        font-size: 26px;
+    }
+}
